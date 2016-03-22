@@ -9,25 +9,28 @@
 defineRCKParams
 
 %% Define sample values for the x-axis in the phase plane.
-kroot = (phi + xi + delta) ^ (1/(alpha - 1));
+k_root = (params.phi + params.xi + params.delta) ^ ...
+    (1 / (params.alpha - 1));
 nPoints = 50;
-initialValue = 0;
-kfine = linspace(initialValue, kroot, nPoints);
+k_init = 0;
+k_fine = linspace(k_init, k_root, nPoints);
 
 %% Compute steady-state curve.
-cstar = kfine .^ alpha - (phi + xi + delta) * kfine;
+c_star = k_fine .^ params.alpha - ...
+    (params.phi + params.xi + params.delta) * k_fine;
 
 %% Define sample values for the y-axis in the phase plane.
-cfine = linspace(initialValue, c0, nPoints);
+c_fine = linspace(k_init, params.c0, nPoints);
 
 %% Create a lattice of points.
-[K, C] = meshgrid(kfine, cfine);
+[K, C] = meshgrid(k_fine, c_fine);
 
 %% Compute the differentials.
-f = @(k) k .^ alpha; 
-fprime = @(k) alpha * k .^ (alpha - 1);
-dK = f(K) - C - (phi + xi + delta)*K; % dk/dt
-dC = ((fprime(K) - (xi + delta + theta))/rho - phi) .* C; % dc/dt
+dK = RCK_f(K, params) - C - ...
+    (params.phi + params.xi + params.delta) * K; % dk/dt
+dC = ((RCK_df(K, params) - ...
+    (params.xi + params.delta + params.theta)) ...
+    / params.rho - params.phi) .* C; % dc/dt
 dC(~isfinite(dC)) = 0;
 
 %% Visualize the phase portrait.
@@ -36,12 +39,12 @@ h = streamslice(K, C, dK, dC, 2, 'noarrows', 'cubic');
 set(h, 'LineStyle', ':')
 % Plot the steady-state vertical line and smooth curve.
 hold on
-plot(kfine, cstar, 'm', 'LineWidth', 2)
-xlabel('k (capital intensity)')
-ylabel('c (per capita consumption)')
-title('(k, c) trajectories')
+plot(k_fine, c_star, 'm', 'LineWidth', 2)
+xlabel('k (capital per capita)')
+ylabel('c (consumption per capita)')
+title('Ramsey/Cass-Koopmans Capital-Consumption Phase Plane')
 grid
-plot([kstar, kstar], ylim, 'k', 'LineWidth', 2)
+plot([params.k_steady, params.k_steady], ylim(), 'k', 'LineWidth', 2)
 
 %% TODO: add the direction arrows (four regions) and labels, similar to
 % the Wikipedia article.
