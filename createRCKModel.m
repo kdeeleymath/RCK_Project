@@ -8,7 +8,7 @@
 defineRCKParams
 
 %% Define the time span.
-tspan = [0, 500];
+tspan = [0; 500];
 
 %% Define the initial conditions.
 y0 = [params.k0; params.c0];
@@ -17,7 +17,7 @@ y0 = [params.k0; params.c0];
 RCK_Fun = @(t, y) RCK_Equations(t, y, params);
 
 %% Solve the system.
-[tout, yout] = ode45(RCK_Fun, tspan, y0)
+[tout, yout] = ode45(RCK_Fun, tspan, y0);
 
 
 

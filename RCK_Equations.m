@@ -8,9 +8,9 @@ c = y(2);
 
 % Write down the equations.
 dy_dt(1, 1) = RCK_f(k, params) - c - ...
-              (params.phi + params.xi + params.delta) * k;
+              (params.phi + params.xi + params.delta) * k; % dk/dt
 
 dy_dt(2, 1) = ( ( RCK_df(k, params) - params.theta - params.xi - ...
-                  params.delta ) / params.rho - params.phi ) * c;       
+                  params.delta ) / params.rho - params.phi ) * c; % dc/dt      
 
 end
