@@ -11,7 +11,7 @@ defineRCKParams
 k_steady = (params.alpha/(params.theta + params.xi + params.delta + ...
     params.rho * params.phi)) ^ (1/(1 - params.alpha));
 gap = 1e-2;
-k_lower = [5; k_steady - gap];
+k_lower = [10; k_steady - gap];
 
 %% Define the upper range of k-values.
 k_upper = [k_steady + gap; 100];
@@ -44,8 +44,3 @@ legend({'Lower solution', 'Upper solution', ...
     'Interpreter', 'Latex', ...
     'Location', 'north', ...
     'FontSize', 12)
-   
-    
-
-
-
