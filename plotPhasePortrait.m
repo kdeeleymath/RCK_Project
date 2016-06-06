@@ -37,6 +37,8 @@ dC(~isfinite(dC)) = 0;
 figure('Units', 'Normalized', 'Position', 0.25*[1, 1, 2, 2])
 h = streamslice(K, C, dK, dC, 2, 'noarrows', 'cubic');
 set(h, 'LineStyle', ':', 'LineWidth', 1.5)
+% Hide all but one streamslice from the legend.
+set(h(2:end), 'HandleVisibility', 'off')
 % Plot the steady-state vertical line and smooth curve.
 hold on
 plot(k_fine, c_star, 'm', 'LineWidth', 2)
@@ -47,7 +49,9 @@ grid
 plot([params.k_steady, params.k_steady], ylim(), 'k', 'LineWidth', 2)
 % Increase the font size.
 ax = gca;
-ax.FontSize = 14;
+ax.FontSize = 15;
+% Add the legend.
+legend({'Stream Slices', 'dc/dt = 0', 'dk/dt = 0'})
 
 %% Add the direction arrows (four regions) and labels.
 
@@ -81,28 +85,28 @@ annotation('arrow', xFig, yFig, 'LineWidth', 1.5)
 
 % Bottom-right quadrant.
 % Coordinates.
-x = [80, 80];
-y = [2.5, 2.2];
+x = [60, 60];
+y = [1.0, 0.7];
 [xFig, yFig] = ds2nfu(x, y);
 % Annotation.
 annotation('arrow', xFig, yFig, 'LineWidth', 1.5)
 % Coordinates.
-x = [80, 73];
-y = [2.5, 2.5];
+x = [60, 67];
+y = [1.0, 1.0];
 [xFig, yFig] = ds2nfu(x, y);
 % Annotation.
 annotation('arrow', xFig, yFig, 'LineWidth', 1.5)
 
 % Bottom-left quadrant.
 % Coordinates.
-x = [80, 80];
-y = [2.5, 2.2];
+x = [15, 15];
+y = [1.0, 1.3];
 [xFig, yFig] = ds2nfu(x, y);
 % Annotation.
 annotation('arrow', xFig, yFig, 'LineWidth', 1.5)
 % Coordinates.
-x = [80, 73];
-y = [2.5, 2.5];
+x = [15, 22];
+y = [1.0, 1.0];
 [xFig, yFig] = ds2nfu(x, y);
 % Annotation.
 annotation('arrow', xFig, yFig, 'LineWidth', 1.5)

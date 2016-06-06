@@ -8,8 +8,7 @@
 defineRCKParams
 
 %% Define the lower range of k-values.
-k_steady = (params.alpha/(params.theta + params.xi + params.delta + ...
-    params.rho * params.phi)) ^ (1/(1 - params.alpha));
+k_steady = params.k_steady;
 gap = 1e-2;
 k_lower = [10; k_steady - gap];
 
