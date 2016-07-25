@@ -1,16 +1,16 @@
-function dy_dt = RCK_Equations(t, y, params) %#ok<INUSL>
+function dY_dt = RCK_Equations(t, Y, params) %#ok<INUSL>
 % RCK_EQUATIONS Function defining the right-hand sides of the two coupled
-% ordinary differential equations for the Ramsey/Cass-Koopmans model.
+% ordinary differential equations defining the Ramsey-Cass-Koopmans model.
 
 % Extract k and c.
-k = y(1);
-c = y(2);
+k = Y(1);
+c = Y(2);
 
-% Write down the equations.
-dy_dt(1, 1) = RCK_f(k, params) - c - ...
+% Write down the equations for dk/dt and dc/dt.
+dY_dt(1, 1) = RCK_f(k, params) - c - ...
               (params.phi + params.xi + params.delta) * k; % dk/dt
 
-dy_dt(2, 1) = ( ( RCK_df(k, params) - params.theta - params.xi - ...
+dY_dt(2, 1) = ( ( RCK_df(k, params) - params.theta - params.xi - ...
                   params.delta ) / params.rho - params.phi ) * c; % dc/dt      
 
-end
+end % RCK_Equations
