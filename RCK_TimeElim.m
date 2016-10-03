@@ -2,6 +2,9 @@ function dc_dk = RCK_TimeElim(k, c, params)
 % RCK_TIMEELIM Right-hand side of the Ramsey-Cass-Koopmans differential
 % equation for dc/dk obtained after applying the "time elimination" method,
 % i.e. writing dc/dk as (dc/dt) / (dk/dt) and simplifying.
+%
+% Authors: Sonia Bridge, Ken Deeley
+% Copyright 2016 The MathWorks, Inc.
 
 % Compute the numerator.
 numerator = (RCK_df(k, params) - params.theta - params.xi - params.delta ...

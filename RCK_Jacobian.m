@@ -1,5 +1,8 @@
 function J = RCK_Jacobian(k, c, params)
 % Compute the analytical Jacobian of the RCK equation for dc/dk.
+%
+% Authors: Sonia Bridge, Ken Deeley
+% Copyright 2016 The MathWorks, Inc.
 
 % Define the numerator and denominator.
 numerator = c * (RCK_df(k, params) - params.theta - ...

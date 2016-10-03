@@ -1,6 +1,9 @@
 function dY_dt = RCK_Equations(t, Y, params) %#ok<INUSL>
 % RCK_EQUATIONS Function defining the right-hand sides of the two coupled
 % ordinary differential equations defining the Ramsey-Cass-Koopmans model.
+%
+% Authors: Sonia Bridge, Ken Deeley
+% Copyright 2016 The MathWorks, Inc.
 
 % Extract k and c.
 k = Y(1);
